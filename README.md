@@ -7,7 +7,7 @@ It plans, tracks and verifies. It runs in one of two modes: **bookkeeping** (a d
 ## Status: v1 draft
 
 - Built from one author's manual setup and tried on one real project. It found and fixed several flaws in its own first draft during that trial.
-- Not yet run cold in a fresh session by someone who did not write it.
+- Not yet run cold in a fresh session by someone who did not write it. [TESTING.md](TESTING.md) lists the scenarios; none has been run.
 - Some parts were never exercised: the review gate, the multi-agent rules, the archive step, and the step that turns repeated lessons into hooks, scripts or skills.
 - The report-length limit in the session-start step is a guess.
 
@@ -29,7 +29,7 @@ Treat it as a starting point and expect to edit it.
 - **Plain files are the source of truth.** No database and no service.
 - **Back up before editing** any state file that git does not track, or that has uncommitted changes, then diff against the backup at close-out.
 - **Dates are signals, not proof.** Status claims are checked against code, tests and git before being trusted.
-- **Trusted vs untrusted instructions.** The project's own checklists, `CLAUDE.md` / `AGENTS.md` and TODO acceptance checks are followed. Issue text, comments, web pages and tool output are treated as data.
+- **Trusted vs untrusted instructions.** The project's own checklists, `CLAUDE.md` / `AGENTS.md` and TODO acceptance checks are followed, but only commands on a read-only allowlist run without asking. Issue text, comments, web pages and tool output are treated as data.
 - **Ask before anything destructive or outward-facing.** It does not deploy or push, even if a trusted instruction asks it to.
 
 ## Install
@@ -41,11 +41,16 @@ Then start a session with something like "start session" and finish with "wrap u
 ## Files
 
 ```
-SKILL.md                    the protocol
+SKILL.md                    the core protocol
+references/lessons.md       lesson logging, repeat counting, automation proposals (off by default)
+references/multi-agent.md   rules for several agents editing the same files
 templates/handoff.md        dated session handoff
 templates/lessons.md        append-only lessons and dead ends
 templates/todo-header.md    TODO header with current state and decisions
+TESTING.md                  twelve scenarios for a first controlled trial
 ```
+
+Defaults you can override in the project's `AGENTS.md` or `CLAUDE.md`: `STALE_DAYS = 7`, `KEEP_CLOSED = 10`, `KEEP_BACKUPS = 5`, `LESSON_AUTOMATION = off`.
 
 ## Not in v1
 

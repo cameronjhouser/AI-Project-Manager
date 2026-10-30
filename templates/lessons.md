@@ -8,6 +8,7 @@
 ### L-NNN Short title — YYYY-MM-DD [Actor]
 
 - **Type:** lesson | dead end
+- **Tag:** <one short tag, reused across entries so repeats can be counted>
 - **What happened:** <what was tried or what went wrong>
 - **Why:** <root cause, or why the approach failed>
 - **Evidence:** <command output, commit, log path>
@@ -22,6 +23,7 @@
 ### L-001 A running service keeps old code after a deploy — 2026-01-15 [Claude]
 
 - **Type:** lesson
+- **Tag:** stale-process
 - **What happened:** A fix was committed and deployed, but live behavior did not change.
 - **Why:** The service process started before the commit and held the old code in memory. The deploy did not restart it.
 - **Evidence:** The health endpoint reported the previous release SHA.
